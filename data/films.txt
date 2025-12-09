@@ -1,0 +1,25 @@
+1;Interstellar;Sci-fi o hľadaní novej planéty.;5;2014;8.6
+2;Inception;Sny v snoch, Nolanov mindfuck.;6;2010;8.8
+3;The Dark Knight;Batman vs Joker.;1;2008;9.0
+4;Titanic;Tragická láska na lodi. Všetci zomru;7;1997;7.8
+5;The Godfather;Najslávnejší mafiánsky film.;3;1972;9.2
+6;The Shawshank Redemption;Útek z väzenia s nádejou.;3;1994;9.3
+7;Joker;Temný príbeh o zrode zloducha.;3;2019;8.4
+8;The Matrix;Revolučný sci-fi o realite.;5;1999;8.7
+9;Forrest Gump;Život jedného muža cez dejiny USA.;3;1994;8.8
+10;Gladiator;Rimský generál v aréne.;1;2000;8.5
+11;Avengers: Endgame;Finále Marvel ságy.;1;2019;8.4
+12;The Conjuring;Skutočný prípad vyšetrovateľov Warrenovcov.;4;2013;7.5
+13;The Ring;Hororová kliatba videokazety.;4;2002;7.1
+14;La La Land;Moderný muzikál o láske.;7;2016;8.0
+15;The Lion King;Animovaná klasika o kráľovi.;3;1994;8.5
+16;Pulp Fiction;Tarantinov kultový film.;3;1994;8.9
+17;Fight Club;Príbeh o identite a rebélii.;3;1999;8.8
+18;Dunkirk;Vojnový film o evakuácii.;8;2017;7.9
+19;Tenet;Časová inverzia a akcia.;1;2020;7.4
+20;The Social Network;Založenie Facebooku.;3;2010;7.7
+21;Her;Muž sa zamiluje do AI.;7;2013;8.0
+22;The Martian;Astronaut prežíva na Marse.;5;2015;8.0
+23;Whiplash;Drsný príbeh o hudbe a disciplíne.;3;2014;8.5
+24;Memento;Muž bez pamäte pátra po pravde.;6;2000;8.4
+25;Shutter Island;Psychiatrická záhada na ostrove.;6;2010;8.1

@@ -1,0 +1,8 @@
+1;Action
+2;Comedy
+3;Drama
+4;Horror
+5;Sci-Fi
+6;Thriller
+7;Romance
+8;Documentary
