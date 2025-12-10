@@ -31,7 +31,6 @@ public class FilmCardPanel extends JPanel {
         setBackground(bg);
         setOpaque(true);
 
-        // BORDER (viditeľný hlavne v light mode)
         setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(borderColor, 1),
                 BorderFactory.createEmptyBorder(15, 20, 15, 20)

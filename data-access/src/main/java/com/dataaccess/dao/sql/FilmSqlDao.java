@@ -30,7 +30,7 @@ public class FilmSqlDao implements IFilmDao {
             );
             stmt.setInt(4, film.getReleaseYear());
             stmt.setDouble(5, film.getRating());
-            stmt.setString(6, film.getTrailerUrl()); // 🔥 nový parameter
+            stmt.setString(6, film.getTrailerUrl());
 
             stmt.executeUpdate();
 
@@ -62,7 +62,7 @@ public class FilmSqlDao implements IFilmDao {
                 film.setDescription(rs.getString("description"));
                 film.setReleaseYear(rs.getInt("release_year"));
                 film.setRating(rs.getDouble("rating"));
-                film.setTrailerUrl(rs.getString("trailer_url")); // 🔥 načítanie traileru
+                film.setTrailerUrl(rs.getString("trailer_url"));
 
                 Long genreId = rs.getLong("genre_id");
                 if (!rs.wasNull()) {
@@ -104,9 +104,7 @@ public class FilmSqlDao implements IFilmDao {
                 film.setDescription(rs.getString("description"));
                 film.setReleaseYear(rs.getInt("release_year"));
                 film.setRating(rs.getDouble("rating"));
-                film.setTrailerUrl(rs.getString("trailer_url")); // 🔥 načítanie traileru
-
-                System.out.println("Trailer FROM SQL: " + rs.getString("trailer_url"));
+                film.setTrailerUrl(rs.getString("trailer_url"));
 
                 Long genreId = rs.getLong("genre_id");
                 if (!rs.wasNull()) {
@@ -146,7 +144,7 @@ public class FilmSqlDao implements IFilmDao {
             );
             stmt.setInt(4, film.getReleaseYear());
             stmt.setDouble(5, film.getRating());
-            stmt.setString(6, film.getTrailerUrl()); // 🔥 nový parameter
+            stmt.setString(6, film.getTrailerUrl());
             stmt.setLong(7, film.getId());
 
             stmt.executeUpdate();

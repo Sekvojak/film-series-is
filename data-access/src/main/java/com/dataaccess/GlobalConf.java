@@ -12,7 +12,7 @@ public class GlobalConf {
     private static IDataConnector connector;
 
     @Getter
-    private static DatabaseMode currentMode = DatabaseMode.SQL; // default
+    private static DatabaseMode currentMode = DatabaseMode.SQL;
 
     public static void init() {
         setDatabaseMode(currentMode);
@@ -22,7 +22,7 @@ public class GlobalConf {
         currentMode = mode;
 
         if (mode == DatabaseMode.SQL) {
-            DatabaseInit.init();           // inicializácia SQL DB
+            DatabaseInit.init();
             connector = new SqlConnector();
             System.out.println("Používa sa SQL databáza");
         } else {

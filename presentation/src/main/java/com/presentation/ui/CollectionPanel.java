@@ -19,15 +19,12 @@ public class CollectionPanel extends JPanel {
     private JList<Collection> collectionList;
     private DefaultListModel<Collection> listModel;
 
-    // detail kontajner (pravá strana)
     private JPanel detailContainer;
 
     public CollectionPanel() {
         setLayout(new BorderLayout(10, 10));
 
-        // -----------------------------------------
         // ĽAVÝ PANEL – ZOZNAM KOLEKCIÍ
-        // -----------------------------------------
         listModel = new DefaultListModel<>();
         collectionList = new JList<>(listModel);
         collectionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -38,16 +35,12 @@ public class CollectionPanel extends JPanel {
         scrollPane.setPreferredSize(new Dimension(200, 0));
         add(scrollPane, BorderLayout.WEST);
 
-        // -----------------------------------------
         // PRAVÝ PANEL – DETAIL KOLEKCIE
-        // -----------------------------------------
         detailContainer = new JPanel(new BorderLayout());
         detailContainer.setOpaque(false);
         add(detailContainer, BorderLayout.CENTER);
 
-        // -----------------------------------------
         // SPODNÝ PANEL S TLAČIDLAMI
-        // -----------------------------------------
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         JButton btnAdd = new JButton("Nová kolekcia");
@@ -75,9 +68,7 @@ public class CollectionPanel extends JPanel {
         loadCollections();
     }
 
-    // ---------------------------------------------------------
     // LOAD
-    // ---------------------------------------------------------
     private void loadCollections() {
         List<Collection> collections = collectionService.getUserCollections();
         listModel.clear();
@@ -89,9 +80,7 @@ public class CollectionPanel extends JPanel {
         }
     }
 
-    // ---------------------------------------------------------
     // DETAIL KOLEKCIE
-    // ---------------------------------------------------------
     private void showCollectionDetail(Collection collection) {
 
         detailContainer.removeAll();
@@ -141,9 +130,7 @@ public class CollectionPanel extends JPanel {
         detailContainer.repaint();
     }
 
-    // ---------------------------------------------------------
     // DETAIL FILMU
-    // ---------------------------------------------------------
     private void openFilmDetailDialog(Film film) {
 
         JDialog dialog = new JDialog(
@@ -216,23 +203,17 @@ public class CollectionPanel extends JPanel {
     }
 
 
-    // ---------------------------------------------------------
     // NOVÁ KOLEKCIA
-    // ---------------------------------------------------------
     private void openCreateCollectionDialog() {
         openEditDialogInternal(null);
     }
 
-    // ---------------------------------------------------------
     // UPRAVIŤ KOLEKCIU
-    // ---------------------------------------------------------
     private void openEditCollectionDialog(Collection collection) {
         openEditDialogInternal(collection);
     }
 
-    /**
-     * Vnútorná metóda pre CREATE aj EDIT dialóg
-     */
+
     private void openEditDialogInternal(Collection collection) {
 
         boolean isEdit = (collection != null);

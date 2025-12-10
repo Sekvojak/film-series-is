@@ -54,9 +54,7 @@ public class FilmPanel extends JPanel {
         loadFilms();
     }
 
-    // -------------------------------------------------------------------------
     // QUICK FILTER BAR
-    // -------------------------------------------------------------------------
     private JPanel createQuickFilterBar() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
@@ -143,19 +141,16 @@ public class FilmPanel extends JPanel {
         }
     }
 
-    // -------------------------------------------------------------------------
     // FORM
-    // -------------------------------------------------------------------------
     private JPanel createFilmForm() {
         JPanel formPanel = new JPanel(new BorderLayout());
 
-        // ZMENENÉ: 5 riadkov namiesto 4
         JPanel fields = new JPanel(new GridLayout(5, 2, 5, 5));
 
         txtName = new JTextField();
         txtYear = new JTextField();
         txtRating = new JTextField();
-        txtTrailerUrl = new JTextField();   // 🔥 nové pole
+        txtTrailerUrl = new JTextField();
 
         fields.add(new JLabel("Názov filmu:"));
         fields.add(txtName);
@@ -171,7 +166,6 @@ public class FilmPanel extends JPanel {
         fields.add(new JLabel("Hodnotenie (0–10):"));
         fields.add(txtRating);
 
-        // 🔥 nový riadok
         fields.add(new JLabel("Trailer URL:"));
         fields.add(txtTrailerUrl);
 
@@ -186,9 +180,7 @@ public class FilmPanel extends JPanel {
     }
 
 
-    // -------------------------------------------------------------------------
     // FILM LIST
-    // -------------------------------------------------------------------------
     private JScrollPane createFilmList() {
         filmListModel = new DefaultListModel<>();
         filmList = new JList<>(filmListModel);
@@ -206,9 +198,7 @@ public class FilmPanel extends JPanel {
         return scroll;
     }
 
-    // -------------------------------------------------------------------------
     // BUTTONS
-    // -------------------------------------------------------------------------
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
 
@@ -229,9 +219,7 @@ public class FilmPanel extends JPanel {
         return panel;
     }
 
-    // -------------------------------------------------------------------------
     // CRUD
-    // -------------------------------------------------------------------------
     private void saveFilm() {
         String name = txtName.getText().trim();
         String yearText = txtYear.getText().trim();

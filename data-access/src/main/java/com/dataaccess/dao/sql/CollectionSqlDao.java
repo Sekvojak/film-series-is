@@ -177,20 +177,17 @@ public class CollectionSqlDao implements ICollectionDao {
     public void update(CollectionEntity collection) {
         try (Connection conn = DatabaseConnection.getConnection()) {
 
-            // aktualizujeme názov kolekcie
             String updateSql = "UPDATE collections SET name = ? WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(updateSql);
             stmt.setString(1, collection.getName());
             stmt.setLong(2, collection.getId());
             stmt.executeUpdate();
 
-            // zmažeme staré filmy
             String deleteFilms = "DELETE FROM collection_films WHERE collection_id = ?";
             PreparedStatement del = conn.prepareStatement(deleteFilms);
             del.setLong(1, collection.getId());
             del.executeUpdate();
 
-            // vložíme nové filmy
             String insert = "INSERT INTO collection_films (collection_id, film_id) VALUES (?, ?)";
             PreparedStatement ins = conn.prepareStatement(insert);
 

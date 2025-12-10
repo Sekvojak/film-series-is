@@ -71,7 +71,7 @@ public class LoginFrame extends JFrame {
             return;
         }
 
-        UserSession.login(user); // uložíme prihláseného používateľa
+        UserSession.login(user);
 
         JOptionPane.showMessageDialog(this, "Prihlásenie úspešné!");
 
@@ -79,7 +79,7 @@ public class LoginFrame extends JFrame {
         MainFrame main = new MainFrame();
         main.setVisible(true);
 
-        dispose(); // zatvorí login okno
+        dispose();
     }
 
     private void openRegister() {

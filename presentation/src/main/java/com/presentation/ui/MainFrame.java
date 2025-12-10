@@ -18,9 +18,7 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // ----------------------
-        // HORNÝ PANEL – info o userovi + prepínače
-        // ----------------------
+        // HORNÝ PANEL
         JPanel topPanel = new JPanel(new BorderLayout());
 
         JLabel lblUser = new JLabel(
@@ -42,7 +40,6 @@ public class MainFrame extends JFrame {
         // ---- Dark mode prepínač ----
         JCheckBox darkToggle = new JCheckBox("Dark mode");
 
-        // default: sme v light móde
         darkToggle.setSelected(false);
 
         darkToggle.addActionListener(e -> {
@@ -68,9 +65,7 @@ public class MainFrame extends JFrame {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // ----------------------
         // TABS – Filmy, Kolekcie
-        // ----------------------
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Filmy", new FilmPanel());
         tabs.addTab("Kolekcie", new CollectionPanel());
@@ -78,18 +73,14 @@ public class MainFrame extends JFrame {
         add(tabs, BorderLayout.CENTER);
     }
 
-    // --------------------------
     // LOGOUT FUNKCIA
-    // --------------------------
     private void logout() {
         UserSession.logout();
         new LoginFrame().setVisible(true);
         dispose();
     }
 
-    // --------------------------
     // PREPÍNANIE DATABÁZY
-    // --------------------------
     private void switchDatabase(int selected) {
 
         DatabaseMode newMode = (selected == 0)
@@ -97,7 +88,7 @@ public class MainFrame extends JFrame {
                 : DatabaseMode.TEXT;
 
         if (newMode == GlobalConf.getCurrentMode()) {
-            return; // nič sa nemení
+            return;
         }
 
         GlobalConf.setDatabaseMode(newMode);
