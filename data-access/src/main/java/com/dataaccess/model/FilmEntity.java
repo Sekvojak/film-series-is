@@ -12,4 +12,6 @@ public class FilmEntity {
     private GenreEntity genre;
     private int releaseYear;
     private double rating;
+
+    private String trailerUrl;
 }

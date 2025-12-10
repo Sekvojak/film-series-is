@@ -12,9 +12,6 @@ public class FilmTextDao implements IFilmDao {
 
     private final String filePath = "data/films.txt";
 
-    // =========================================================
-    // SAVE (INSERT or UPDATE)
-    // =========================================================
     @Override
     public void save(FilmEntity film) {
 
@@ -36,7 +33,8 @@ public class FilmTextDao implements IFilmDao {
                                     ? film.getGenre().getId()
                                     : "null") + ";" +
                             film.getReleaseYear() + ";" +
-                            film.getRating()
+                            film.getRating() + ";" +
+                            safe(film.getTrailerUrl())      // 🔥 nový atribút
             );
 
             bw.newLine();
@@ -46,9 +44,6 @@ public class FilmTextDao implements IFilmDao {
         }
     }
 
-    // =========================================================
-    // GET ALL
-    // =========================================================
     @Override
     public List<FilmEntity> getAll() {
 
@@ -61,22 +56,22 @@ public class FilmTextDao implements IFilmDao {
             while ((line = br.readLine()) != null) {
 
                 String[] p = line.split(";", -1);
-                if (p.length < 6) continue;
+                if (p.length < 7) continue; // 🔥 upravené na 7 polí
 
                 FilmEntity f = new FilmEntity();
                 f.setId(Long.parseLong(p[0]));
                 f.setName(p[1]);
                 f.setDescription(p[2]);
 
-                // ✔ žáner len ak existuje a je platný
                 GenreEntity g = new GenreEntity();
-                if (p[3] != null && !p[3].equals("null") && !p[3].isEmpty()) {
+                if (!p[3].equals("null") && !p[3].isEmpty()) {
                     g.setId(Long.parseLong(p[3]));
                 }
                 f.setGenre(g);
 
                 f.setReleaseYear(Integer.parseInt(p[4]));
                 f.setRating(Double.parseDouble(p[5]));
+                f.setTrailerUrl(p[6]);         // 🔥 načítanie traileru
 
                 films.add(f);
             }
@@ -96,9 +91,6 @@ public class FilmTextDao implements IFilmDao {
                 .orElse(null);
     }
 
-    // =========================================================
-    // UPDATE – rewrite whole file
-    // =========================================================
     @Override
     public void update(FilmEntity film) {
 
@@ -111,9 +103,9 @@ public class FilmTextDao implements IFilmDao {
             while ((line = br.readLine()) != null) {
 
                 String[] p = line.split(";", -1);
-                long id = Long.parseLong(p[0]);
+                long fid = Long.parseLong(p[0]);
 
-                if (id == film.getId()) {
+                if (fid == film.getId()) {
 
                     String newLine =
                             film.getId() + ";" +
@@ -123,7 +115,8 @@ public class FilmTextDao implements IFilmDao {
                                             ? film.getGenre().getId()
                                             : "null") + ";" +
                                     film.getReleaseYear() + ";" +
-                                    film.getRating();
+                                    film.getRating() + ";" +
+                                    safe(film.getTrailerUrl());   // 🔥 nový stĺpec
 
                     lines.add(newLine);
 
@@ -146,9 +139,6 @@ public class FilmTextDao implements IFilmDao {
         }
     }
 
-    // =========================================================
-    // DELETE
-    // =========================================================
     @Override
     public void delete(Long id) {
 
@@ -182,9 +172,6 @@ public class FilmTextDao implements IFilmDao {
         }
     }
 
-    // =========================================================
-    // HELPERS
-    // =========================================================
     private String safe(String s) {
         return (s == null) ? "" : s.replace(";", ",");
     }

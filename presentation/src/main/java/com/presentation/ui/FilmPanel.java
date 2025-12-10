@@ -31,6 +31,8 @@ public class FilmPanel extends JPanel {
     private DefaultListModel<Film> filmListModel;
     private JList<Film> filmList;
 
+    private JTextField txtTrailerUrl;
+
 
     private Film currentFilm = null;
 
@@ -147,11 +149,13 @@ public class FilmPanel extends JPanel {
     private JPanel createFilmForm() {
         JPanel formPanel = new JPanel(new BorderLayout());
 
-        JPanel fields = new JPanel(new GridLayout(4, 2, 5, 5));
+        // ZMENENÉ: 5 riadkov namiesto 4
+        JPanel fields = new JPanel(new GridLayout(5, 2, 5, 5));
 
         txtName = new JTextField();
         txtYear = new JTextField();
         txtRating = new JTextField();
+        txtTrailerUrl = new JTextField();   // 🔥 nové pole
 
         fields.add(new JLabel("Názov filmu:"));
         fields.add(txtName);
@@ -167,6 +171,10 @@ public class FilmPanel extends JPanel {
         fields.add(new JLabel("Hodnotenie (0–10):"));
         fields.add(txtRating);
 
+        // 🔥 nový riadok
+        fields.add(new JLabel("Trailer URL:"));
+        fields.add(txtTrailerUrl);
+
         formPanel.add(fields, BorderLayout.NORTH);
 
         txtDescription = new JTextArea(5, 20);
@@ -176,6 +184,7 @@ public class FilmPanel extends JPanel {
 
         return formPanel;
     }
+
 
     // -------------------------------------------------------------------------
     // FILM LIST
@@ -250,6 +259,8 @@ public class FilmPanel extends JPanel {
         film.setReleaseYear(year);
         film.setRating(rating);
         film.setGenre((Genre) cmbGenre.getSelectedItem());
+        film.setTrailerUrl(txtTrailerUrl.getText().trim());
+
 
         if (film.getId() == null) {
             filmService.saveFilm(film);
@@ -269,6 +280,8 @@ public class FilmPanel extends JPanel {
         txtYear.setText("");
         txtRating.setText("");
         txtDescription.setText("");
+        txtTrailerUrl.setText("");
+
     }
 
     private void loadFilms() {
@@ -283,6 +296,8 @@ public class FilmPanel extends JPanel {
         txtYear.setText(String.valueOf(film.getReleaseYear()));
         txtRating.setText(String.valueOf(film.getRating()));
         txtDescription.setText(film.getDescription());
+        txtTrailerUrl.setText(film.getTrailerUrl());
+
     }
 
     private void deleteFilm() {

@@ -13,6 +13,7 @@ public class Film {
     private int releaseYear;
     private double rating;
 
+    private String trailerUrl;
 
 
     @Override

@@ -14,6 +14,7 @@ public class FilmMapper {
     public static Film toDomain(FilmEntity entity) {
         if (entity == null) return null;
 
+
         if (entity.getName() == null) {
             FilmService filmService = new FilmService();
             Film full = filmService.getFilmById(entity.getId());
@@ -26,6 +27,7 @@ public class FilmMapper {
         film.setDescription(entity.getDescription());
         film.setRating(entity.getRating());
         film.setReleaseYear(entity.getReleaseYear());
+        film.setTrailerUrl(entity.getTrailerUrl());
 
         if (entity.getGenre() != null && entity.getGenre().getId() != null) {
             Genre g = genreService.getGenreById(entity.getGenre().getId());
@@ -45,6 +47,7 @@ public class FilmMapper {
         entity.setDescription(film.getDescription());
         entity.setRating(film.getRating());
         entity.setReleaseYear(film.getReleaseYear());
+        entity.setTrailerUrl(film.getTrailerUrl());
 
         if (film.getGenre() != null) {
             GenreEntity ge = new GenreEntity();

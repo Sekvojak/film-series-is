@@ -117,113 +117,147 @@ public class DatabaseInit {
 
                 // Gladiator (Action)
                 stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('Gladiator',
-                'Rímsky generál Maximus sa stáva otrok a gladiátor, aby sa pomstil cisárovi.',
-                (SELECT id FROM genres WHERE name = 'Action'),
-                2000,
-                8.5)
-    """);
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'Gladiator',
+                 'Rímsky generál Maximus sa stáva otrok a gladiátor, aby sa pomstil cisárovi.',
+                 (SELECT id FROM genres WHERE name = 'Action'),
+                 2000,
+                 8.5,
+                 'https://www.youtube.com/watch?v=P5ieIbInFpg'
+                )
+                """);
 
                 // Interstellar (Sci-Fi)
-                stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('Interstellar',
-                'Skupina astronautov cestuje cez červiu dieru za záchranou ľudstva.',
-                (SELECT id FROM genres WHERE name = 'Sci-Fi'),
-                2014,
-                8.6)
-    """);
+                                stmt.execute("""
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'Interstellar',
+                 'Skupina astronautov cestuje cez červiu dieru za záchranou ľudstva.',
+                 (SELECT id FROM genres WHERE name = 'Sci-Fi'),
+                 2014,
+                 8.6,
+                 'https://www.youtube.com/watch?v=YourTrailerHere'
+                )
+                """);
 
                 // Inception (Sci-Fi)
-                stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('Inception',
-                'Z zlodej špecializujúci sa na extrakciu snov sa pokúša vložiť myšlienku do cudzej mysle.',
-                (SELECT id FROM genres WHERE name = 'Sci-Fi'),
-                2010,
-                8.5)
-    """);
+                                stmt.execute("""
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'Inception',
+                 'Z zlodej špecializujúci sa na extrakciu snov sa pokúša vložiť myšlienku do cudzej mysle.',
+                 (SELECT id FROM genres WHERE name = 'Sci-Fi'),
+                 2010,
+                 8.5,
+                 'https://www.youtube.com/watch?v=YourTrailerHere'
+                )
+                """);
 
                 // The Dark Knight (Action)
-                stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('The Dark Knight',
-                'Batman čelí svojmu najväčšiemu protivníkovi – Jokerovi.',
-                (SELECT id FROM genres WHERE name = 'Action'),
-                2008,
-                9.0)
-    """);
+                                stmt.execute("""
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'The Dark Knight',
+                 'Batman čelí svojmu najväčšiemu protivníkovi – Jokerovi.',
+                 (SELECT id FROM genres WHERE name = 'Action'),
+                 2008,
+                 9.0,
+                 'https://www.youtube.com/watch?v=YourTrailerHere'
+                )
+                """);
 
                 // The Shawshank Redemption (Drama)
-                stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('The Shawshank Redemption',
-                'Príbeh o nádeji, priateľstve a prežití vo väzení Shawshank.',
-                (SELECT id FROM genres WHERE name = 'Drama'),
-                1994,
-                9.3)
-    """);
+                                stmt.execute("""
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'The Shawshank Redemption',
+                 'Príbeh o nádeji, priateľstve a prežití vo väzení Shawshank.',
+                 (SELECT id FROM genres WHERE name = 'Drama'),
+                 1994,
+                 9.3,
+                 'https://www.youtube.com/watch?v=YourTrailerHere'
+                )
+                """);
 
                 // The Godfather (Drama)
-                stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('The Godfather',
-                'Mocná talianska mafiánska rodina Corleonovcov bojuje o kontrolu.',
-                (SELECT id FROM genres WHERE name = 'Drama'),
-                1972,
-                9.2)
-    """);
+                                stmt.execute("""
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'The Godfather',
+                 'Mocná talianska mafiánska rodina Corleonovcov bojuje o kontrolu.',
+                 (SELECT id FROM genres WHERE name = 'Drama'),
+                 1972,
+                 9.2,
+                 'https://www.youtube.com/watch?v=YourTrailerHere'
+                )
+                """);
 
                 // Titanic (Romance)
-                stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('Titanic',
-                'Láska na palube slávnej lode Titanic.',
-                (SELECT id FROM genres WHERE name = 'Romance'),
-                1997,
-                7.8)
-    """);
+                                stmt.execute("""
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'Titanic',
+                 'Láska na palube slávnej lode Titanic.',
+                 (SELECT id FROM genres WHERE name = 'Romance'),
+                 1997,
+                 7.8,
+                 'https://www.youtube.com/watch?v=YourTrailerHere'
+                )
+                """);
 
                 // The Conjuring (Horror)
-                stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('The Conjuring',
-                'Manželia Warrenovci vyšetrujú paranormálny prípad v strašidelnom dome.',
-                (SELECT id FROM genres WHERE name = 'Horror'),
-                2013,
-                7.5)
-    """);
+                                stmt.execute("""
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'The Conjuring',
+                 'Manželia Warrenovci vyšetrujú paranormálny prípad v strašidelnom dome.',
+                 (SELECT id FROM genres WHERE name = 'Horror'),
+                 2013,
+                 7.5,
+                 'https://www.youtube.com/watch?v=YourTrailerHere'
+                )
+                """);
 
                 // Joker (Thriller)
-                stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('Joker',
-                'Psychologický portrét muža meniacého sa na ikonického zločinca.',
-                (SELECT id FROM genres WHERE name = 'Thriller'),
-                2019,
-                8.4)
-    """);
+                                stmt.execute("""
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'Joker',
+                 'Psychologický portrét muža meniacého sa na ikonického zločinca.',
+                 (SELECT id FROM genres WHERE name = 'Thriller'),
+                 2019,
+                 8.4,
+                 'https://www.youtube.com/watch?v=YourTrailerHere'
+                )
+                """);
 
                 // Senna (Documentary)
-                stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('Senna',
-                'Príbeh legendárneho jazdca Formuly 1 Ayrtona Sennu.',
-                (SELECT id FROM genres WHERE name = 'Documentary'),
-                2010,
-                8.5)
-    """);
+                                stmt.execute("""
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'Senna',
+                 'Príbeh legendárneho jazdca Formuly 1 Ayrtona Sennu.',
+                 (SELECT id FROM genres WHERE name = 'Documentary'),
+                 2010,
+                 8.5,
+                 'https://www.youtube.com/watch?v=YourTrailerHere'
+                )
+                """);
 
-                // Forrest Gump (Comedy/Drama → dáme Drama)
-                stmt.execute("""
-        INSERT INTO films(name, description, genre_id, release_year, rating)
-        VALUES ('Forrest Gump',
-                'Jednoduchý muž zažíva úžasné momenty americkej histórie.',
-                (SELECT id FROM genres WHERE name = 'Drama'),
-                1994,
-                8.8)
-    """);
+                // Forrest Gump (Drama)
+                                stmt.execute("""
+                INSERT INTO films(name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (
+                 'Forrest Gump',
+                 'Jednoduchý muž zažíva úžasné momenty americkej histórie.',
+                 (SELECT id FROM genres WHERE name = 'Drama'),
+                 1994,
+                 8.8,
+                 'https://www.youtube.com/watch?v=YourTrailerHere'
+                )
+                """);
+
 
                 System.out.println("Default filmy boli vložené.");
             }

@@ -15,8 +15,8 @@ public class FilmSqlDao implements IFilmDao {
     public void save(FilmEntity film) {
 
         String sql = """
-                INSERT INTO films (name, description, genre_id, release_year, rating)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO films (name, description, genre_id, release_year, rating, trailer_url)
+                VALUES (?, ?, ?, ?, ?, ?)
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -30,6 +30,7 @@ public class FilmSqlDao implements IFilmDao {
             );
             stmt.setInt(4, film.getReleaseYear());
             stmt.setDouble(5, film.getRating());
+            stmt.setString(6, film.getTrailerUrl()); // 🔥 nový parameter
 
             stmt.executeUpdate();
 
@@ -41,7 +42,7 @@ public class FilmSqlDao implements IFilmDao {
     @Override
     public FilmEntity getById(Long id) {
         String sql = """
-                SELECT f.id, f.name, f.description, f.release_year, f.rating,
+                SELECT f.id, f.name, f.description, f.release_year, f.rating, f.trailer_url,
                        g.id AS genre_id, g.name AS genre_name
                 FROM films f
                 LEFT JOIN genres g ON f.genre_id = g.id
@@ -61,6 +62,7 @@ public class FilmSqlDao implements IFilmDao {
                 film.setDescription(rs.getString("description"));
                 film.setReleaseYear(rs.getInt("release_year"));
                 film.setRating(rs.getDouble("rating"));
+                film.setTrailerUrl(rs.getString("trailer_url")); // 🔥 načítanie traileru
 
                 Long genreId = rs.getLong("genre_id");
                 if (!rs.wasNull()) {
@@ -82,7 +84,7 @@ public class FilmSqlDao implements IFilmDao {
     @Override
     public List<FilmEntity> getAll() {
         String sql = """
-                SELECT f.id, f.name, f.description, f.release_year, f.rating,
+                SELECT f.id, f.name, f.description, f.release_year, f.rating, f.trailer_url,
                        g.id AS genre_id, g.name AS genre_name
                 FROM films f
                 LEFT JOIN genres g ON f.genre_id = g.id
@@ -102,6 +104,9 @@ public class FilmSqlDao implements IFilmDao {
                 film.setDescription(rs.getString("description"));
                 film.setReleaseYear(rs.getInt("release_year"));
                 film.setRating(rs.getDouble("rating"));
+                film.setTrailerUrl(rs.getString("trailer_url")); // 🔥 načítanie traileru
+
+                System.out.println("Trailer FROM SQL: " + rs.getString("trailer_url"));
 
                 Long genreId = rs.getLong("genre_id");
                 if (!rs.wasNull()) {
@@ -126,7 +131,7 @@ public class FilmSqlDao implements IFilmDao {
 
         String sql = """
                 UPDATE films
-                SET name=?, description=?, genre_id=?, release_year=?, rating=?
+                SET name=?, description=?, genre_id=?, release_year=?, rating=?, trailer_url=?
                 WHERE id=?
                 """;
 
@@ -141,7 +146,8 @@ public class FilmSqlDao implements IFilmDao {
             );
             stmt.setInt(4, film.getReleaseYear());
             stmt.setDouble(5, film.getRating());
-            stmt.setLong(6, film.getId());
+            stmt.setString(6, film.getTrailerUrl()); // 🔥 nový parameter
+            stmt.setLong(7, film.getId());
 
             stmt.executeUpdate();
 

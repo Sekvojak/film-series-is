@@ -145,15 +145,76 @@ public class CollectionPanel extends JPanel {
     // DETAIL FILMU
     // ---------------------------------------------------------
     private void openFilmDetailDialog(Film film) {
-        JOptionPane.showMessageDialog(
-                this,
-                film.getName() + "\nRok: " + film.getReleaseYear() +
-                        "\nHodnotenie: " + film.getRating() +
-                        "\n\n" + film.getDescription(),
-                "Detail filmu",
-                JOptionPane.INFORMATION_MESSAGE
+
+        JDialog dialog = new JDialog(
+                (Frame) SwingUtilities.getWindowAncestor(this),
+                "Detail filmu", true
         );
+        dialog.setSize(400, 350);
+        dialog.setLocationRelativeTo(this);
+        dialog.setLayout(new BorderLayout(10, 10));
+
+        // ----------- CONTENT PANEL -----------
+        JPanel content = new JPanel();
+        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+        content.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        JLabel lblTitle = new JLabel(film.getName() + " (" + film.getReleaseYear() + ")");
+        lblTitle.setFont(new Font("SansSerif", Font.BOLD, 18));
+        lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel lblRating = new JLabel("Hodnotenie: " + film.getRating());
+        lblRating.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JTextArea txtDesc = new JTextArea(film.getDescription());
+        txtDesc.setLineWrap(true);
+        txtDesc.setWrapStyleWord(true);
+        txtDesc.setEditable(false);
+        txtDesc.setBorder(BorderFactory.createTitledBorder("Popis"));
+
+        content.add(lblTitle);
+        content.add(Box.createVerticalStrut(5));
+        content.add(lblRating);
+        content.add(Box.createVerticalStrut(10));
+        content.add(new JScrollPane(txtDesc));
+
+        dialog.add(content, BorderLayout.CENTER);
+
+        // ----------- BOTTOM BUTTONS -----------
+        JPanel bottom = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+        JButton btnTrailer = new JButton("Prehrať trailer");
+        JButton btnClose = new JButton("Zavrieť");
+
+        bottom.add(btnTrailer);
+        bottom.add(btnClose);
+
+        dialog.add(bottom, BorderLayout.SOUTH);
+
+        // ----------- ACTIONS -----------
+
+        btnTrailer.addActionListener(e -> {
+            Film full = filmService.getFilmById(film.getId());
+            String url = full.getTrailerUrl();
+
+            if (url == null || url.isEmpty()) {
+                JOptionPane.showMessageDialog(dialog, "Tento film nemá trailer URL.");
+                return;
+            }
+
+            try {
+                Desktop.getDesktop().browse(new java.net.URI(url));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(dialog, "Nepodarilo sa otvoriť URL.");
+            }
+        });
+
+
+        btnClose.addActionListener(e -> dialog.dispose());
+
+        dialog.setVisible(true);
     }
+
 
     // ---------------------------------------------------------
     // NOVÁ KOLEKCIA
