@@ -37,6 +37,8 @@ public class FilmPanel extends JPanel {
     private Film currentFilm = null;
 
     public FilmPanel() {
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
         setLayout(new BorderLayout(10, 10));
 
         // ---------- QUICK FILTER BAR ----------
@@ -57,6 +59,7 @@ public class FilmPanel extends JPanel {
     // QUICK FILTER BAR
     private JPanel createQuickFilterBar() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
 
         // Search bar
         txtQuickSearch = new JTextField(20);
@@ -172,6 +175,13 @@ public class FilmPanel extends JPanel {
         formPanel.add(fields, BorderLayout.NORTH);
 
         txtDescription = new JTextArea(5, 20);
+        txtDescription.setBorder(
+                BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(UIManager.getColor("Component.borderColor"), 1),
+                        BorderFactory.createEmptyBorder(5, 5, 5, 5)
+                )
+        );
+
         txtDescription.setLineWrap(true);
         txtDescription.setWrapStyleWord(true);
         formPanel.add(new JScrollPane(txtDescription), BorderLayout.CENTER);
@@ -184,6 +194,12 @@ public class FilmPanel extends JPanel {
     private JScrollPane createFilmList() {
         filmListModel = new DefaultListModel<>();
         filmList = new JList<>(filmListModel);
+        filmList.setBorder(
+                BorderFactory.createCompoundBorder(
+                        BorderFactory.createTitledBorder("Filmy v databáze"),
+                        BorderFactory.createEmptyBorder(5, 5, 5, 5)
+                )
+        );
         filmList.setBorder(BorderFactory.createTitledBorder("Filmy v databáze"));
 
         filmList.addListSelectionListener(e -> {
@@ -198,6 +214,13 @@ public class FilmPanel extends JPanel {
         return scroll;
     }
 
+    private void styleButton(JButton btn) {
+        btn.setFocusPainted(false);
+        btn.setBorder(BorderFactory.createEmptyBorder(6, 12, 6, 12));
+        btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+
+
     // BUTTONS
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
@@ -205,16 +228,35 @@ public class FilmPanel extends JPanel {
         JButton btnNew = new JButton("Nový");
         JButton btnSave = new JButton("Uložiť");
         JButton btnDelete = new JButton("Vymazať");
-
+        JButton btnTrailer = new JButton("Prehrať trailer");
 
         panel.add(btnNew);
         panel.add(btnSave);
         panel.add(btnDelete);
+        panel.add(btnTrailer);
 
+        styleButton(btnNew);
+        styleButton(btnSave);
+        styleButton(btnDelete);
+        styleButton(btnTrailer);
 
         btnNew.addActionListener(e -> { currentFilm = null; clearForm(); filmList.clearSelection(); });
         btnSave.addActionListener(e -> saveFilm());
         btnDelete.addActionListener(e -> deleteFilm());
+        btnTrailer.addActionListener(e -> {
+            Film full = filmService.getFilmById(currentFilm.getId());
+            String url = full.getTrailerUrl();
+
+            if (url == null || url.isEmpty()) {
+                return;
+            }
+
+            try {
+                Desktop.getDesktop().browse(new java.net.URI(url));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
 
         return panel;
     }

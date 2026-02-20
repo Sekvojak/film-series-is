@@ -9,7 +9,16 @@ import java.awt.event.MouseEvent;
 
 public class FilmCardPanel extends JPanel {
 
+    Color cardBg = new Color(255, 255, 255);
+    Color cardBorder = new Color(230, 230, 230);
+
     public FilmCardPanel(Film film, boolean isDark, Runnable onClick) {
+
+        setBackground(cardBg);
+        setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(cardBorder, 1),
+                BorderFactory.createEmptyBorder(10, 15, 10, 15)
+        ));
 
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20));
@@ -53,9 +62,7 @@ public class FilmCardPanel extends JPanel {
 
         add(content, BorderLayout.CENTER);
 
-        // -----------------------------------------
         // KLIKATEĽNOSŤ + HOVER EFEKT
-        // -----------------------------------------
         addMouseListener(new MouseAdapter() {
 
             @Override
